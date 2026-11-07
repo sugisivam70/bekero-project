@@ -367,7 +367,12 @@
 
   // ---------- Parallax Effects ----------
   function initParallax() {
-    const parallaxImages = document.querySelectorAll('[data-parallax]');
+    // The cinematic hero owns its scroll parallax in initHeroAnimation().
+    // Excluding it here prevents two ScrollTriggers from competing to update
+    // the same transform while the page scrolls.
+    const parallaxImages = document.querySelectorAll(
+      '[data-parallax]:not(.hero-cinematic__bg)'
+    );
     parallaxImages.forEach((el) => {
       const speed = parseFloat(el.dataset.parallax) || 0.2;
       gsap.to(el, {
