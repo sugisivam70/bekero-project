@@ -546,6 +546,26 @@
     });
   }
 
+  // ---------- Contact Details ----------
+  // Add the shared social links to each page footer.
+  function initContactDetails() {
+    const whatsappNumber = '919042664066';
+    const instagramUrl = 'https://www.instagram.com/varttaa_overseas?rpxt=NzdlNnVwZ3B0YWJ4';
+    const facebookUrl = 'https://www.facebook.com/share/1CLM9X8hhy/';
+
+    document.querySelectorAll('.footer__col').forEach((column) => {
+      if (column.querySelector('h4')?.textContent.trim() !== 'Contact' || column.querySelector('.footer__social')) return;
+      const socialLinks = document.createElement('div');
+      socialLinks.className = 'footer__social';
+      socialLinks.setAttribute('aria-label', 'Social media links');
+      socialLinks.innerHTML = `
+        <a href="https://wa.me/${whatsappNumber}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">WA</a>
+        <a href="${instagramUrl}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
+        <a href="${facebookUrl}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">FB</a>`;
+      column.appendChild(socialLinks);
+    });
+  }
+
   // ---------- Smooth Anchor Navigation ----------
   function initSmoothAnchors() {
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -603,6 +623,7 @@
     initNavigation();
     initPreloader();
     initFormValidation();
+    initContactDetails();
     initSmoothAnchors();
     initLazyLoad();
     initResize();
